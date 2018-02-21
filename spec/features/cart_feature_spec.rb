@@ -52,7 +52,7 @@ describe 'Feature Test: Cart', :type => :feature do
        click_button("Checkout")
 
        @user.reload
-       expect(@user.current_cart).to be_nil 
+       expect(@user.current_cart).to be_nil
      end
     end
   end
@@ -140,7 +140,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
       it "Updates quantity when selecting the same item twice" do
         first_item = Item.first
-        2.times do 
+        2.times do
           visit store_path
           within("form[action='#{line_items_path(item_id: first_item)}']") do
             click_button("Add to Cart")
@@ -152,7 +152,7 @@ describe 'Feature Test: Cart', :type => :feature do
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
         expect(page).to have_content("Quantity: 2")
         total = first_item.price * 2
-        expect(page).to have_content("$#{total.to_f/100}")
+        expect(page).to have_content("$#{total.to_f}")
       end
 
     end
